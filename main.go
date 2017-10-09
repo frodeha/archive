@@ -57,12 +57,12 @@ func sync(cmd *cobra.Command, args []string) error {
 }
 
 func switchArchive(cmd *cobra.Command, args []string) error {
-	key := Archive.NewArchiveKey("")
+	/*key := Archive.NewArchiveKey("")
 	err := key.SaveAs(currentDirectoryFile())
 	if err != nil {
 		return err
 	}
-
+*/
 	config := fmt.Sprintf("location = %s", args[0])
 	return ioutil.WriteFile(".archive", []byte(config), 0644)
 }
@@ -141,7 +141,7 @@ func update(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	return key.Save()
+	return backupAndOverwriteCurrentFile(key)
 }
 
 func delete(cmd *cobra.Command, args []string) error {
@@ -319,7 +319,7 @@ func loadConfig() string {
 		return "/tmp"
 	}
 
-	return parts[1]
+	return strings.TrimSpace(parts[1])
 }
 
 func exists(path, name, part string) bool {
