@@ -188,7 +188,6 @@ func (a *ArchiveKey) save(file *excelize.File) error {
 		file.SetCellValue("Sheet1", fmt.Sprintf("G%d", rowNumber), toString(r.HasPercussion))
 	}
 
-	file.SetSheetName("Sheet1", "Arkiv")
 
 	// Freeze first (header) row
 	file.SetPanes("Sheet1",
